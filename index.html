@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="path/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="path/fontawesome-free-5.15.4-web/css/all.css">
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button onclick="productcng(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="productcng(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5 id="phntotal">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button onclick="secound(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="case-value" class="form-control text-center" value="1">
+                           <button onclick="secound(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5 id="case-text">$59</h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5 id="sub-total">1,278</h5>
+                        <h5 id="tax-amount">$0</h5>
+                        <h5 id="all-prize">$ 1,278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+
+<script>
+   
+   
+   
+   // phone er js
+   
+   function productcng(possetive){
+      const inputOne = document.getElementById('case-count');
+      const number = parseInt(inputOne.value);
+      // const Newcount = number - 1;
+      let Newcount = number;
+      if(possetive == true){
+         Newcount = number + 1;
+      }
+      if(possetive == false && number > 0){
+         Newcount = number - 1;
+      }
+      inputOne.value = Newcount;
+      const Totalphn = Newcount * 1219;
+       document.getElementById("phntotal").innerText = '$' + Totalphn;
+
+       calculate();
+   }
+   
+   // case er js
+
+   function secound(possetive){
+      const caseValue = document.getElementById('case-value');
+      const number = parseInt(caseValue.value);
+      // const newValue = number - 1;
+      let newValue = number ;
+      if(possetive == false && number > 0 ){
+         newValue = number -1;
+
+      }
+      if(possetive == true){
+         newValue = number +1;
+
+      }
+      caseValue.value = newValue;
+      document.getElementById('case-text').innerText;
+      const total = newValue * 59;
+      document.getElementById('case-text').innerText = '$' + total;
+      calculate();
+   }
+
+
+   // Subtotal calculation
+    
+    function calculate(){
+       const Phoneinput = document.getElementById('case-count');
+       const phoneValue = parseInt(Phoneinput.value);
+
+       const Caseinput = document.getElementById('case-value');
+       const CaseValue = parseInt(Caseinput.value);
+       
+       const Subtotal = phoneValue * 1219 + CaseValue * 59;
+       const ekn = document.getElementById('sub-total').innerText = '$' + Subtotal;
+       const tax = Math.round(Subtotal * 0.01);
+       const taxvew = document.getElementById('tax-amount').innerText = '$' + tax;
+       const all = Subtotal + tax;
+       document.getElementById('all-prize').innerText = '$' + all;
+     
+
+
+
+
+
+    }
+
+
+
+
+
+</script>
+
+
+</body>
+
+</html>
